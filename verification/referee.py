@@ -37,26 +37,27 @@ from tests import TESTS
 make_generator = '''
 def cover(f, xxdata):   
     def h(f, rtn):
-        return f(rtn)    
-    def g():        
-        result = None
-        for t in range(5):            
-            left, right = yield result
+        return f(rtn)
+    def o(left, right):                            
             if len(left) > len(right):
-                result = -1
+                return -1
             elif len(right) > len(left):
-                result = 1
+                return 1
             elif (xxdata[0]-11331)>>5  in left:
-                result = -xxdata[1]
+                return -xxdata[1]
             elif (xxdata[0]-11331)>>5 in right:
-                result = xxdata[1]
-            else:
-                result = 0
+                return xxdata[1]
+            return 0       
+    def g():
+        result = h()
+        for t in range(5):
+            left, right = yield result
+            result = o(left, right)
         yield result
-    
+            
     rtn = g()
     next(rtn)
-    return h(f, rtn)
+    return f(rtn)
 '''
 api.add_listener(
     ON_CONNECT,
