@@ -36,8 +36,7 @@ from tests import TESTS
 
 make_generator = '''
 def cover(f, indata):
-    def g():
-        __fake_i__ , __fake_w__ = indata[0], indata[1]
+    def g():        
         result = None
         for t in range(5):            
             left, right = yield result
@@ -45,10 +44,10 @@ def cover(f, indata):
                 result = -1
             elif len(right) > len(left):
                 result = 1
-            elif (__fake_i__-11331)>>5  in left:
-                result = -__fake_w__
-            elif (__fake_i__-11331)>>5 in right:
-                result = __fake_w__
+            elif (indata[0]-11331)>>5  in left:
+                result = -indata[1]
+            elif (indata[0]-11331)>>5 in right:
+                result = indata[1]
             else:
                 result = 0
         yield result
