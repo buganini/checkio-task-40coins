@@ -35,6 +35,6 @@ from random import randint
 for i in range(10):            
      i = randint(0,100)
      w = randint(0,1)*2-1
-     g = balance((i<<5)+11331, w)
-     TESTS["Extra"].append({"input": (g,), "answer": i*w }) 
+     # g = balance((i<<5)+11331, w)
+     TESTS["Extra"].append({"input": (i,w), "answer": i*w }) 
 

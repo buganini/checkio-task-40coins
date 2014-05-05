@@ -34,13 +34,36 @@ from checkio.referees import checkers
 
 from tests import TESTS
 
+make_generator = '''
+def balance(f, indata):
+    def g():
+        __fake_i__ , __fake_w__ = indata[0], indata[1]
+        result = None
+        for t in range(5):            
+            left, right = yield result
+            if len(left) > len(right):
+                result = -1
+            elif len(right) > len(left):
+                result = 1
+            elif (__fake_i__-11331)>>5  in left:
+                result = -__fake_w__
+            elif (__fake_i__-11331)>>5 in right:
+                result = __fake_w__
+            else:
+                result = 0
+        yield result
+    
+    rtn = g()
+    next(rtn)
+    return f(rtn)
+'''
 api.add_listener(
     ON_CONNECT,
     CheckiOReferee(
         tests=TESTS,
         cover_code={
-            'python-27': None, #cover_codes.unwrap_args,  # or None
-            'python-3': None #cover_codes.unwrap_args
+            'python-27': make_generator, #cover_codes.unwrap_args,  # or None
+            'python-3': make_generator #cover_codes.unwrap_args
         },
         # checker=None,  # checkers.float.comparison(2)
         # add_allowed_modules=[],
