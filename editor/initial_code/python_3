@@ -23,6 +23,11 @@ def checkio(b):
     Return i*w, where i is the index of the fake coin and w = 1 if it is heavier else -1
     if there is no fake coin or the fake coin has the same weight as the genuine ones, the return 0
     '''
+    r1 = b.send(([1,2,3,4,5], [6,7,8,9,10]))
+    r2 = b.send(([1,2,3,4,5], [11,12,13,14,15]))
+    r3 = b.send(([1,2], [4,5]))
+    r4 = b.send(([10], [1]))
+    r5 = b.send(([10], [2]))
     return 0
 
 #These "asserts" using only for self-checking and not necessary for auto-testing
