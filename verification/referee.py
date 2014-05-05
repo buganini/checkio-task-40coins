@@ -35,7 +35,10 @@ from checkio.referees import checkers
 from tests import TESTS
 
 make_generator = '''
+def w(f):
+    return lambda l,r:f(l,r)
 def cover(f, xxdata):   
+    @w
     def o(left, right):                            
             if len(left) > len(right):
                 return -1
