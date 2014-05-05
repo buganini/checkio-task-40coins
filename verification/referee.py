@@ -35,7 +35,7 @@ from checkio.referees import checkers
 from tests import TESTS
 
 make_generator = '''
-def balance(f, indata):
+def cover(f, indata):
     def g():
         __fake_i__ , __fake_w__ = indata[0], indata[1]
         result = None
