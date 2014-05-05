@@ -36,8 +36,6 @@ from tests import TESTS
 
 make_generator = '''
 def cover(f, xxdata):   
-    def h(f, rtn):
-        return f(rtn)
     def o(left, right):                            
             if len(left) > len(right):
                 return -1
@@ -49,7 +47,7 @@ def cover(f, xxdata):
                 return xxdata[1]
             return 0       
     def g():
-        result = h()
+        result = None
         for t in range(5):
             left, right = yield result
             result = o(left, right)
