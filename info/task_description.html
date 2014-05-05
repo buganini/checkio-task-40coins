@@ -1,10 +1,6 @@
-<p>
-    <i>( Describe task in general )</i>
-</p>
-
 <pre>
-     There are 100 coins, 99 of which are identical. 
-     There might be one that is different, it is not known whether it is heavier or lighter than the others.       
+     There are 100 coins, 99 of which are genuine. 
+     There might be one that is fake, it is not known whether it is heavier or lighter than the others.       
      This time the balance may be used 5 times to determine if there is a unique coin;  
      If there is, to isolate it and determine its weight relative to the others.
 </pre>
@@ -16,21 +12,28 @@
     <strong>Input: </strong> A balance (which is a coroutine(generator) that return the result of balance.)    
 </p>
 <p>
-    <strong>Work with the balance: </strong> <pre>Send a tuple of two sets of integers to the coroutine, then the coroutine will yield -1 if the  coins with indices in first set is heavier.
-    yield 1 if  the coins with indices in second set is heavier. yield 0 if two sets of coins have weigh the same.
-    The balance can only work for 5 times.
-    The indices of coins are from 1 to 100.      
+    <strong>Work with the balance: </strong> 
+    <pre>
+    Send a tuple (left, right) of two sets of integers to the balance. 
+    left is a list contains the indices of coins you want to put on the left side of the balance.
+    right is a list contains the indices of coins you want to put on the right side of the balance.
+    The indices of coins are from 1 to 100.
+    The balance will yield -1 if the coins on the left side is heavier.
+    The balance will yield 1 if the coins on the right side is heavier.
+    The balance will yield 0 if the weight on the both side are the same.
+    The balance can only work for 5 times.          
     </pre>      
 </p>
 <p>
     <strong>Output: </strong> Int
     <pre>
-     If all 1000 coins are identical, the output is 0.
+     If all 100 coins are identical, the output is 0.
      Otherwise, suppose the index of the different coin is i.
      return i if i is heavier.
      return -i if i is lighter.
      
      </pre> 
+     <img src="balance.jpg" />
 </p>
 
 
