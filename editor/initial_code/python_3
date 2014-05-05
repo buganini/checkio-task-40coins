@@ -1,11 +1,34 @@
-def checkio(l, n):
-    """
-	Find the greatest product of nconsecutive integers in the list l.
-    """
-    return None
+from random import randint
+def balance():
+    ' -1 means left is heavier,, 0 means equal, 1 means right is heavier'
+    i = randint(0, 100)   # the index of the fake coin. 0 means no fake coin.
+    w = randint(0,1)*2-1  # 1 means the fake coin is heavier, -1 means the fake coin is lighter    
+    result = i*w
+    for t in range(5):            
+        left, right = yield result
+        if len(left) > len(right):  # left is heavier 
+            result = -1
+        elif len(right) > len(left): # right is heavier
+            result = 1
+        elif i in left: #  the fake coin is on the left
+            result = -w
+        elif i in right: # the fake coin is on the right
+            result = w
+        else: # the fake coin is not on the balance
+            result = 0
+    yield result    # yield the last result
+
+def checkio(b):
+    '''
+    Return i*w, where i is the index of the fake coin and w = 1 if it is heavier else -1
+    if there is no fake coin or the fake coin has the same weight as the genuine ones, the return 0
+    '''
+    return 0
 
 #These "asserts" using only for self-checking and not necessary for auto-testing
 if __name__ == '__main__':
-    assert checkio([1,2,3,5,1,6,1], 2) == 15
-    assert checkio([1,3,4,5,2,6,7,2], 3) == 84
+    for n in range(10):
+        b = balance()
+        ans = next(b)
+        assert checkio(b) == ans    
     print('Done')

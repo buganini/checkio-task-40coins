@@ -40,8 +40,29 @@
         <strong>Example:</strong>
     </p>
     <pre class="brush: python">
-    assert checkio([1,2,3,5,1,6,1], 2) == 15
-    assert checkio([1,3,4,5,2,6,7,2], 3) == 84
+from random import randint
+def balance():
+    ' -1 means left is heavier,, 0 means equal, 1 means right is heavier'
+    i = randint(0, 100)   # the index of the fake coin. 0 means no fake coin.
+    w = randint(0,1)*2-1  # 1 means the fake coin is heavier, -1 means the fake coin is lighter    
+    result = i*w
+    for t in range(5):            
+        left, right = yield result
+        if len(left) > len(right):  # left is heavier 
+            result = -1
+        elif len(right) > len(left): # right is heavier
+            result = 1
+        elif i in left: #  the fake coin is on the left
+            result = -w
+        elif i in right: # the fake coin is on the right
+            result = w
+        else: # the fake coin is not on the balance
+            result = 0
+    yield result    # yield the last result
+
+b = balance()
+ans = next(b)
+assert checkio(b) == ans    
     </pre>
 </div>
 
