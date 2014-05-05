@@ -6,33 +6,35 @@ Each test is dict with
     "answer" -- your right answer
     "explanation" -- not necessary key, it's using for additional info in animation.
 """
-
+def balance(__fake_i__ , __fake_w__):
+    def g():        
+        result = None
+        for t in range(5):            
+            left, right = yield result
+            if len(left) > len(right):
+                result = -1
+            elif len(right) > len(left):
+                result = 1
+            elif (__fake_i__-11331)>>5  in left:
+                result = -__fake_w__
+            elif (__fake_i__-11331)>>5 in right:
+                result = __fake_w__
+            else:
+                result = 0
+        yield result
+    
+    rtn = g()
+    next(rtn)
+    return rtn
 
 TESTS = {
-    "Basics": [
-        {
-            "input": ([1, 3, 2, 4], 2) ,
-            "answer": 8,
-            "explanation": "2*4=?"
-        },
-        {
-            "input": ([5, 7,1,1,1,1,5], 3),
-            "answer": 35,
-            "explanation": "5*7*1=?"
-        }
-    ],
     "Extra": []
 }
 from random import randint
-def prod(l):
-    r = 1
-    for x in l:
-        r*=x
-    return r
-def f(l,n):
-    return max(prod(l[i:i+n]) for i in range(len(l)-n+1))
-for i in range(10):
-     n = randint(2,10)
-     l = [randint(1, 100) for x in range(10**4)]
-     TESTS["Extra"].append({"input": (l,n), "answer": f(l,n)}) 
+
+for i in range(10):            
+     i = randint(0,100)
+     w = randint(0,1)*2-1
+     g = balance((i<<5)+11331, w)
+     TESTS["Extra"].append({"input": (g,), "answer": i*w }) 
 
