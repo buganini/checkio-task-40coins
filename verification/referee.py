@@ -35,7 +35,9 @@ from checkio.referees import checkers
 from tests import TESTS
 
 make_generator = '''
-def cover(f, indata):
+def cover(f, xxdata):   
+    def h(f, rtn):
+        return f(rtn)    
     def g():        
         result = None
         for t in range(5):            
@@ -44,17 +46,17 @@ def cover(f, indata):
                 result = -1
             elif len(right) > len(left):
                 result = 1
-            elif (indata[0]-11331)>>5  in left:
-                result = -indata[1]
-            elif (indata[0]-11331)>>5 in right:
-                result = indata[1]
+            elif (xxdata[0]-11331)>>5  in left:
+                result = -xxdata[1]
+            elif (xxdata[0]-11331)>>5 in right:
+                result = xxdata[1]
             else:
                 result = 0
         yield result
     
     rtn = g()
     next(rtn)
-    return f(rtn)
+    return h(f, rtn)
 '''
 api.add_listener(
     ON_CONNECT,
