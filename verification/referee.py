@@ -68,7 +68,7 @@ api.add_listener(
             'python-27': make_generator, #cover_codes.unwrap_args,  # or None
             'python-3': make_generator #cover_codes.unwrap_args
         },
-        # checker=checkers.float.comparison(2)
+        checker=checkers.float.comparison(2)
         # add_allowed_modules=[],
         # add_close_builtins=[],
         # remove_allowed_modules=[]
