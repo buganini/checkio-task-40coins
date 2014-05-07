@@ -63,7 +63,9 @@ def cover(f, xxdata):
 def comparison(right_answer, user_answer):
         if not isinstance(user_answer, int):
             return False, "not an Integer"
-        return right_answer is user_answer, None
+        if right_answer == user_answer:
+             return True, None
+        return False, "Wrong answer"
 
 api.add_listener(
     ON_CONNECT,
