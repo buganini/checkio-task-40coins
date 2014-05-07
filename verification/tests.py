@@ -13,9 +13,10 @@ TESTS = {
 }
 from random import randint
 
-for i in range(100):            
-     i = randint(0,100)
+for i in range(50):            
+     i = randint(1,100)
      w = randint(0,1)*2-1
      # g = balance((i<<5)+11331, w)
      TESTS["Extra"].append({"input": ((i<<5)+11331 ,w), "answer": i*w }) 
+TESTS["Extra"].append({"input": (11331 ,0), "answer": 0 }) 
 
