@@ -60,6 +60,11 @@ def cover(f, xxdata):
     next(rtn)
     return f(rtn)
 '''
+def comparison(right_answer, user_answer):
+        if not isinstance(user_answer, int):
+            return False, "not an Integer"
+        return right_answer is user_answer, None
+
 api.add_listener(
     ON_CONNECT,
     CheckiOReferee(
@@ -68,7 +73,7 @@ api.add_listener(
             'python-27': make_generator, #cover_codes.unwrap_args,  # or None
             'python-3': make_generator #cover_codes.unwrap_args
         },
-        checker=checkers.float_comparison(2)
+        checker=comparison
         # add_allowed_modules=[],
         # add_close_builtins=[],
         # remove_allowed_modules=[]
