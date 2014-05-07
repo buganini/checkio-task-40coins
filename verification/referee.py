@@ -62,7 +62,8 @@ def cover(f, xxdata):
 '''
 def comparison(right_answer, user_answer):
         if not isinstance(user_answer, int):
-            return False, "not an Integer"
+            # 0/0 # thow an exception if you don't like funny moves.
+            return False, "not an Integer"       
         if right_answer == user_answer:
              return True, None
         return False, "Wrong answer"
