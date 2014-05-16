@@ -1,28 +1,23 @@
-<pre>
-     There are 100 coins, 99 of which are genuine and identical. 
-     There might be one that is fake, it is not known whether it is heavier or lighter than the others.       
-     This time the balance may be used 5 times to determine if there is a unique coin;  
-     If there is, to isolate it and determine its weight relative to the others.
-</pre>
-
-<p style="text-align: center;">
+<p>
+    <i>There are 100 coins, 99 of which are genuine and identical. There might be one that is fake, it is not known whether it is heavier or lighter than the others. This time the balance may be used 5 times to determine if there is a unique coin; if there is, to isolate it and determine its weight relative to the others.
+    </i>
 </p>
 
 <p>
-    <strong>Input: </strong> A balance (which is a coroutine(generator) that return the result of balance.)    
+    <strong>Input: </strong> A balance (which is a coroutine(generator) that return the result of balance.)
 </p>
 <p>
-    <strong>Work with the balance: </strong> 
+    <strong>Work with the balance: </strong>
     <pre>
-    Send a tuple (left, right) of two sets of integers to the balance. 
+    Send a tuple (left, right) of two sets of integers to the balance.
     left is a list contains the indices of coins you want to put on the left side of the balance.
     right is a list contains the indices of coins you want to put on the right side of the balance.
     The indices of coins are from 1 to 100.
     The balance will yield -1 if the coins on the left side is heavier.
     The balance will yield 1 if the coins on the right side is heavier.
     The balance will yield 0 if the weight on the both side are the same.
-    The balance can only work for 5 times.          
-    </pre>      
+    The balance can only work for 5 times.
+    </pre>
 </p>
 <p>
     <strong>Output: </strong> Int
@@ -31,9 +26,9 @@
      Otherwise, suppose the index of the different coin is i.
      return i if i is heavier.
      return -i if i is lighter.
-     
-     </pre> 
-     <img src="{{MEDIA}}balance.jpg" />
+
+     </pre>
+     <img src="{{MEDIA}}balance.jpg" width="500" height="375" />
      <a href="https://www.flickr.com/photos/61056899@N06/5751301741/in/photolist-fXPtKt-iLUTD-e1yc2x-9LdVCR-ipytp-e6ptdo-TpXTt-8VqoLR-FAfU4-aJrjqD-66jA7n-4J6sJx-jCn6m5-MuHLf-e3uxEq-713w4e-5Z3R3b-8PTEaE-6kcWZN-9herYu-mBmNr-4YGqj2-eZHfoQ-4KHT6F-9sqRoJ-fwqC5M-ym5fE-7Jv54j-9M2hY-mDJJai-a6kWkQ-8Vtr59-9SdD3n-iQ5LTR-kwe77A-4bsTie-9qN9tS-bV2Se1-4rzaxz-gUuwWY-kmuv3-9mCuiC-78mWWw-c1BW2-fFVecc-56iftS-6s863B-4LD2fE-kwe8s1-3hVFVd/lightbox/">
      CC-BY
      </a>
@@ -50,11 +45,11 @@ from random import randint
 def balance():
     ' -1 means left is heavier,, 0 means equal, 1 means right is heavier'
     i = randint(0, 100)   # the index of the fake coin. 0 means no fake coin.
-    w = randint(0,1)*2-1  # 1 means the fake coin is heavier, -1 means the fake coin is lighter    
+    w = randint(0,1)*2-1  # 1 means the fake coin is heavier, -1 means the fake coin is lighter
     result = i*w
-    for t in range(5):            
+    for t in range(5):
         left, right = yield result
-        if len(left) > len(right):  # left is heavier 
+        if len(left) > len(right):  # left is heavier
             result = -1
         elif len(right) > len(left): # right is heavier
             result = 1
@@ -68,7 +63,7 @@ def balance():
 
 b = balance()
 ans = next(b)
-assert checkio(b) == ans    
+assert checkio(b) == ans
     </pre>
 </div>
 
