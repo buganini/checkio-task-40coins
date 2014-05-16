@@ -1,25 +1,25 @@
 <p>
-    <i>There are 100 coins, 99 of which are genuine and identical. There might be one that is fake, it is not known whether it is heavier or lighter than the others. This time the balance may be used 5 times to determine if there is a unique coin; if there is, to isolate it and determine its weight relative to the others.
+    <i>There are 100 coins, 99 of which are confirmed as genuine and identical. In out lot of coins, it's possible to coin dealer gave us a fake. It is not known whether the fake is heavier or lighter than the real coins. Tthe balance is restricted and may only be used 5 times to determine if there is a unique (read: fake) coin. If we find one. we will isolate it and determine its weight relative to the real coins.
     </i>
 </p>
 
 <p>
-    <strong>Input: </strong> A balance (which is a coroutine(generator) that return the result of balance.)
+    <strong>Input: </strong> A balance (which is a coroutine/generator that returns the result of the balance.)
 </p>
 <p>
-    <strong>Work with the balance: </strong>
+    <strong>Working with the balance: </strong>
 Send a tuple (left, right) of two sets of integers to the balance.<br />
-left is a list contains the indices of coins you want to put on the left side of the balance.<br />
-right is a list contains the indices of coins you want to put on the right side of the balance.<br />
-The indices of coins are from 1 to 100.<br />
+Left is a list which contains the indices of coins you want to put on the left side of the balance.<br />
+Right is a list which the indices of coins you want to put on the right side of the balance.<br />
+The indices of coins range from 1 to 100.<br />
 The balance will yield -1 if the coins on the left side is heavier.<br />
 The balance will yield 1 if the coins on the right side is heavier.<br />
 The balance will yield 0 if the weight on the both side are the same.<br />
-The balance can only work for 5 times.
+The balance will only work for 5 weighs.
 </p>
 
 <p>
-    <strong>Output: </strong> Int
+    <strong>Output: </strong> Int</br>
 If all 100 coins are identical, the output is 0.<br />
 Otherwise, suppose the index of the different coin is i.<br />
 Return i if i is heavier.<br />
